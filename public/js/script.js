@@ -26,6 +26,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  
+  if (themeToggle) {
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeButton(savedTheme);
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      let newTheme;
+      
+      // Cycle through themes: light -> dark -> silver -> light
+      if (currentTheme === 'light') {
+        newTheme = 'dark';
+      } else if (currentTheme === 'dark') {
+        newTheme = 'silver';
+      } else {
+        newTheme = 'light';
+      }
+      
+      if (newTheme === 'light') {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      }
+      
+      updateThemeButton(newTheme);
+    });
+    
+    function updateThemeButton(theme) {
+      switch(theme) {
+        case 'dark':
+          themeToggle.textContent = '⚪ Silver';
+          break;
+        case 'silver':
+          themeToggle.textContent = '☀️ Light';
+          break;
+        default:
+          themeToggle.textContent = '🌙 Dark';
+      }
+    }
+  }
+
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
