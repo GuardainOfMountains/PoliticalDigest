@@ -362,9 +362,9 @@ a:hover {
   margin-bottom: var(--space-lg);
 }
 
-/* Facts Section - Grey */
+/* Facts Section - with theme support */
 .section-facts {
-  background: white;
+  background: var(--theme-bg-primary);
 }
 
 .facts-label {
@@ -1055,7 +1055,7 @@ blockquote {
   font-family: var(--font-serif);
   font-size: var(--text-lg);
   font-style: italic;
-  color: var(--grey-600);
+  color: var(--theme-text-secondary);
 }
 
 /* Stat Highlight */
@@ -1064,7 +1064,7 @@ blockquote {
   align-items: baseline;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  background: var(--purple-50);
+  background: var(--theme-bg-secondary);
   border: 1px solid var(--purple-200);
   border-radius: var(--radius-sm);
 }
@@ -1078,7 +1078,7 @@ blockquote {
 
 .stat-label {
   font-size: var(--text-sm);
-  color: var(--grey-500);
+  color: var(--theme-text-muted);
 }
 
 /* Timeline */
@@ -1528,6 +1528,10 @@ body[data-theme="dark"] {
 
 [data-theme="silver"] .stat-number {
   color: var(--purple-800) !important;
+}
+
+[data-theme="silver"] .stat-label {
+  color: var(--theme-text-muted) !important;
 }
 
 [data-theme="silver"] .nav-list a,
