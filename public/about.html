@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Guard1</title>
+  <meta name="description" content="About Guard1 - Exploring political issues through multiple perspectives.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand"><a href="index.html">Guard1</a></div>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="article.html">Articles</a></li>
+          <li><a href="state.html">State</a></li>
+          <li><a href="federal.html">Federal</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙 Dark</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>About Guard1</h1>
+        <p>Understanding different perspectives on political and social issues.</p>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="container" style="padding: var(--space-3xl) 0;">
+      <div class="article-card" style="max-width: 800px; margin: 0 auto; padding: var(--space-8);">
+        <h2 style="margin-bottom: var(--space-4);">Our Mission</h2>
+        <p style="font-size: var(--text-lg); margin-bottom: var(--space-6);">
+          Guard1 explores political and social issues through multiple perspectives. We believe that understanding why reasonable people disagree is essential to informed citizenship.
+        </p>
+        
+        <h3 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">How We Approach Issues</h3>
+        
+        <div class="features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-4);">
+          <div class="feature" style="padding: var(--space-4);">
+            <h4 style="color: var(--purple-700); margin-bottom: var(--space-2);">The Facts</h4>
+            <p style="font-size: var(--text-sm); margin: 0;">Verifiable, neutral information presented without bias. We separate what's proven from what's debated.</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-4);">
+            <h4 style="color: var(--purple-700); margin-bottom: var(--space-2);">Perspectives</h4>
+            <p style="font-size: var(--text-sm); margin: 0;">Different viewpoints with context about who holds them and why. Presented fairly, with empathy.</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-4);">
+            <h4 style="color: var(--purple-700); margin-bottom: var(--space-2);">The Nuance</h4>
+            <p style="font-size: var(--text-sm); margin: 0;">Tensions, trade-offs, and questions we might be missing. Understanding is our goal, not persuasion.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: var(--space-8); margin-bottom: var(--space-3);">What We Believe</h3>
+        <p>
+          In a divided political climate, it's easy to assume that those who disagree with us are irrational or acting in bad faith. 
+          Guard1 exists to show that reasonable people can look at the same facts and reach different conclusions—often because they 
+          prioritize different values or have different life experiences.
+        </p>
+        <p style="margin-top: var(--space-4);">
+          Our goal is not to tell you what to think, but to help you understand the full picture of complex issues—so you can 
+          form your own informed opinions.
+        </p>
+        
+        <h3 style="margin-top: var(--space-8); margin-bottom: var(--space-3);">Explore Further</h3>
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-4);">
+          <a href="federal.html" class="cta">Federal Officials</a>
+          <a href="state.html" class="cta">State Officials</a>
+          <a href="article.html" class="cta">Articles</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Guard1 — Multiple Perspectives</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -579,6 +579,79 @@ blockquote {
 .mt-lg { margin-top: var(--space-lg); }
 .mb-lg { margin-bottom: var(--space-lg); }
 
+/* State Grid - State Selection Page */
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.state-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-6);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius-md);
+  background: var(--grey-50);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  min-height: 100px;
+}
+
+.state-active {
+  border-color: var(--purple-400);
+  background: var(--purple-pale-bg);
+  cursor: pointer;
+}
+
+.state-active:hover {
+  border-color: var(--purple-600);
+  box-shadow: var(--shadow-purple);
+  transform: translateY(-2px);
+}
+
+.state-active .state-name {
+  color: var(--purple-800);
+  font-weight: var(--weight-semibold);
+}
+
+.state-active .state-status {
+  color: var(--purple-600);
+  font-size: var(--text-sm);
+}
+
+.state-coming-soon {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.state-coming-soon .state-name {
+  color: var(--grey-600);
+}
+
+.state-coming-soon .state-status {
+  color: var(--grey-400);
+  font-size: var(--text-xs);
+}
+
+.state-name {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: var(--grey-800);
+  margin-bottom: var(--space-1);
+}
+
+.state-status {
+  font-size: var(--text-sm);
+  color: var(--grey-500);
+}
+
 /* ==========================================================================
    GUARD1 DESIGN SYSTEM - FULL IMPLEMENTATION
    ========================================================================== */

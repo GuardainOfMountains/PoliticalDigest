@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles — Guard1</title>
+  <meta name="description" content="Browse articles exploring political issues through multiple perspectives.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand"><a href="index.html">Guard1</a></div>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="article.html" class="active">Articles</a></li>
+          <li><a href="state.html">State</a></li>
+          <li><a href="federal.html">Federal</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙 Dark</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Articles</h1>
+        <p>Exploring political and social issues through multiple perspectives.</p>
+      </div>
+    </section>
+
+    <!-- Articles Coming Soon -->
+    <section class="container" style="padding: var(--space-3xl) 0;">
+      <div class="article-card" style="max-width: 600px; margin: 0 auto; text-align: center; padding: var(--space-8);">
+        <h3 style="margin-bottom: var(--space-4);">Articles Coming Soon</h3>
+        <p>We're working on new articles exploring different perspectives on political issues.</p>
+        <p style="margin-top: var(--space-4);">In the meantime, check out our featured articles:</p>
+        
+        <div style="margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4);">
+          <a href="articles/minimum-wage.html" class="cta">Minimum Wage Debate →</a>
+          <a href="federal.html" class="cta">Federal Democratic Officials →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Guard1 — Multiple Perspectives</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
