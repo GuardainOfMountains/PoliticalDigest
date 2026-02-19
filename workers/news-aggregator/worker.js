@@ -5,7 +5,13 @@
  * Usage: GET /?ids=politician-id-1,politician-id-2,...
  * 
  * Caching: 5 minutes
+ * 
+ * Data Sources:
+ * - /feeds.json - Politician RSS feeds
+ * - /data/democratic-sources.json - Reference sources (Party organizations, data sources)
  */
+
+import { SourceManager } from './sources.js';
 
 const CACHE_TTL = 5 * 60; // 5 minutes in seconds
 
@@ -32,20 +38,42 @@ export default {
     const politicianIds = ids.split(',').map(id => id.trim()).filter(id => id);
     
     try {
-      // Fetch feeds.json from the origin
-      const feedsUrl = url.origin + '/feeds.json';
-      const feedsResponse = await fetch(feedsUrl);
+      // Create SourceManager instance
+      const sourceManager = new SourceManager(env);
+      const baseUrl = url.origin;
       
-      if (!feedsResponse.ok) {
-        throw new Error('Failed to fetch feeds configuration');
+      // Load feeds.json separately for politician lookup
+      const feedsUrl = baseUrl + '/feeds.json';
+      let feedsData = {};
+      try {
+        const feedsResponse = await fetch(feedsUrl);
+        if (feedsResponse.ok) {
+          feedsData = await feedsResponse.json();
+        }
+      } catch (e) {
+        console.error('Error loading feeds.json:', e);
       }
       
-      const feedsData = await feedsResponse.json();
+      // Get all feeds from both feeds.json and democratic-sources.json
+      const allFeeds = await sourceManager.getAllFeeds(baseUrl, ctx);
       
-      // Fetch all feeds in parallel
+      // Build a lookup map for quick access
+      const feedMap = {};
+      for (const feed of allFeeds) {
+        feedMap[feed.name.toLowerCase().replace(/\s+/g, '-')] = feed;
+        // Also index by original name
+        feedMap[feed.name.toLowerCase()] = feed;
+      }
+      
+      // Fetch feeds for requested politicians
       const feedPromises = politicianIds.map(async (id) => {
-        const politician = feedsData[id];
-        if (!politician) {
+        // Look up in feeds.json
+        const feedsConfig = feedsData[id];
+        
+        // Also try to find by name in the feed map
+        const feedByName = feedMap[id.toLowerCase()] || feedMap[id.toLowerCase().replace(/\s+/g, '-')];
+        
+        if (!feedsConfig && !feedByName) {
           return {
             id,
             name: id,
@@ -55,10 +83,25 @@ export default {
         }
         
         const articles = [];
+        const feedsToFetch = [];
         
-        for (const feedUrl of politician.feeds) {
+        // Add feeds from feeds.json config
+        if (feedsConfig && feedsConfig.feeds) {
+          for (const feedUrl of feedsConfig.feeds) {
+            if (feedUrl && !feedUrl.includes('example.com')) {
+              feedsToFetch.push({ url: feedUrl, name: feedsConfig.name });
+            }
+          }
+        }
+        
+        // Add feeds from democratic-sources.json if matches
+        if (feedByName && feedByName.source === 'democratic-sources.json') {
+          feedsToFetch.push({ url: feedByName.url, name: feedByName.name });
+        }
+        
+        for (const feedInfo of feedsToFetch) {
           try {
-            const feedResponse = await fetch(feedUrl, {
+            const feedResponse = await fetch(feedInfo.url, {
               headers: {
                 'User-Agent': 'Mozilla/5.0 (compatible; MyPoliticalDigest/1.0)'
               }
@@ -69,20 +112,24 @@ export default {
             }
             
             const feedText = await feedResponse.text();
-            const parsed = parseRSS(feedText, feedUrl);
+            const parsed = parseRSS(feedText, feedInfo.url);
             
             articles.push(...parsed);
           } catch (e) {
             // Silently handle feed errors
-            console.error(`Error fetching feed ${feedUrl}:`, e);
+            console.error(`Error fetching feed ${feedInfo.url}:`, e);
           }
         }
         
+        const name = (feedsConfig && feedsConfig.name) || feedByName?.name || id;
+        const party = feedsConfig?.party;
+        const role = feedsConfig?.role;
+        
         return {
           id,
-          name: politician.name,
-          party: politician.party,
-          role: politician.role,
+          name,
+          party,
+          role,
           articles: articles.slice(0, 10) // Limit to 10 per politician
         };
       });
