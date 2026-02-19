@@ -86,4 +86,4 @@ This document provides a comprehensive guide to the major U.S. political parties
 
 ---
 
-*For Guard1 - Multiple Perspectives on Political Issues*
+*For My Political Digest - Multiple Perspectives on Political Issues*

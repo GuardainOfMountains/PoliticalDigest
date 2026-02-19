@@ -35,4 +35,4 @@ This is a placeholder. Add current politicians as you develop content:
 
 ---
 
-*For Guard1 - Multiple Perspectives on Political Issues*
+*For My Political Digest - Multiple Perspectives on Political Issues*

@@ -60,7 +60,7 @@ export default {
           try {
             const feedResponse = await fetch(feedUrl, {
               headers: {
-                'User-Agent': 'Mozilla/5.0 (compatible; Guard1News/1.0)'
+                'User-Agent': 'Mozilla/5.0 (compatible; MyPoliticalDigest/1.0)'
               }
             });
             

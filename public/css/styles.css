@@ -1,4 +1,4 @@
-/* Guard1 - Purple/Grey Wireframe Design System */
+/* My Political Digest - Purple/Grey Wireframe Design System */
 
 /* CSS Variables - Purple & Grey Theme */
 :root {
@@ -1244,37 +1244,39 @@ a:hover {
 
 /* Silver/Grey Theme */
 [data-theme="silver"] {
-  --theme-bg-primary: #e8e9ed;
-  --theme-bg-secondary: #d1d3d8;
-  --theme-bg-tertiary: #b8bac2;
-  --theme-text-primary: #2d2d35;
-  --theme-text-secondary: #4a4a55;
-  --theme-text-muted: #6a6a75;
-  --theme-border: #c0c2c8;
-  --theme-border-light: #b0b2b8;
+  --theme-bg-primary: #e5e5ea;
+  --theme-bg-secondary: #d9d9df;
+  --theme-bg-tertiary: #cdcdd4;
+  --theme-text-primary: #1a1a1f;
+  --theme-text-secondary: #3a3a40;
+  --theme-text-muted: #5a5a60;
+  --theme-border: #b8b8bf;
+  --theme-border-light: #acacb4;
   
   /* Override original colors for silver theme */
-  --grey-50: #e8e9ed;
-  --grey-100: #d1d3d8;
-  --grey-200: #b8bac2;
-  --grey-300: #9a9ca2;
-  --grey-400: #7a7c82;
-  --grey-500: #5a5c62;
-  --grey-600: #4a4a52;
-  --grey-700: #3a3a42;
-  --grey-800: #2d2d35;
-  --grey-900: #1a1a22;
+  --grey-50: #e5e5ea;
+  --grey-100: #d9d9df;
+  --grey-200: #cdcdd4;
+  --grey-300: #b8b8bf;
+  --grey-400: #9a9aa0;
+  --grey-500: #7a7a80;
+  --grey-600: #5a5a60;
+  --grey-700: #3a3a40;
+  --grey-800: #252528;
+  --grey-900: #1a1a1f;
   
-  --purple-50: #e8e9ed;
-  --purple-100: #d1d3e0;
-  --purple-200: #b0b3cc;
-  --purple-300: #8f93b8;
-  --purple-400: #6e73a4;
-  --purple-500: #5a5d8a;
-  --purple-600: #4a4d70;
-  --purple-700: #3a3d56;
-  --purple-800: #2d2d42;
-  --purple-900: #1a1a2d;
+  --purple-50: #e5e5ea;
+  --purple-100: #d9d9df;
+  --purple-200: #cdcdd4;
+  --purple-300: #b8b8bf;
+  --purple-400: #9a9aa0;
+  --purple-500: #7a7a85;
+  --purple-600: #5a5a65;
+  --purple-700: #45454d;
+  --purple-800: #353538;
+  --purple-900: #252528;
+  
+  --purple-pale-bg: #d9d9df;
 }
 
 /* Apply theme colors to body */
@@ -1477,7 +1479,55 @@ body[data-theme="dark"] {
 }
 
 [data-theme="silver"] .site-footer {
-  background: #b8bac2;
+  background: #b8b8bf;
+}
+
+[data-theme="silver"] .quote-block {
+  background: var(--theme-bg-secondary);
+  color: var(--theme-text-secondary);
+}
+
+/* Silver theme specific: reduce white brightness */
+[data-theme="silver"] .article-card,
+[data-theme="silver"] .feature,
+[data-theme="silver"] .wireframe-card,
+[data-theme="silver"] .split-column,
+[data-theme="silver"] .data-table,
+[data-theme="silver"] .info-grid {
+  background: var(--theme-bg-secondary) !important;
+  border-color: var(--theme-border);
+}
+
+[data-theme="silver"] .quote-block,
+[data-theme="silver"] .stat-highlight {
+  background: var(--theme-bg-tertiary) !important;
+}
+
+[data-theme="silver"] .article-header,
+[data-theme="silver"] .hero {
+  background: linear-gradient(135deg, var(--theme-bg-secondary) 0%, var(--theme-bg-tertiary) 100%) !important;
+}
+
+/* Ensure text is always readable */
+[data-theme="silver"] h1,
+[data-theme="silver"] h2,
+[data-theme="silver"] h3,
+[data-theme="silver"] h4 {
+  color: var(--theme-text-primary) !important;
+}
+
+[data-theme="silver"] p,
+[data-theme="silver"] li,
+[data-theme="silver"] td {
+  color: var(--theme-text-secondary) !important;
+}
+
+[data-theme="silver"] .article-category {
+  color: var(--purple-700) !important;
+}
+
+[data-theme="silver"] .stat-number {
+  color: var(--purple-800) !important;
 }
 
 [data-theme="silver"] .nav-list a,

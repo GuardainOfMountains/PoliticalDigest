@@ -29,4 +29,4 @@
 
 ---
 
-*Profile created for Guard1*
+*Profile created for My Political Digest*

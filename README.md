@@ -1,4 +1,4 @@
-# Guard1 — Multiple Perspectives on Political Issues
+# My Political Digest — Multiple Perspectives on Political Issues
 
 A news platform exploring political and social issues through multiple perspectives.
 

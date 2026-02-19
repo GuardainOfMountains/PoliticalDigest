@@ -1,4 +1,4 @@
-// Guard1 - Interactive Features
+// My Political Digest - Interactive Features
 
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile Menu Toggle

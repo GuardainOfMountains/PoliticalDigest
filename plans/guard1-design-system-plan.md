@@ -1,4 +1,4 @@
-# Guard1 Design System Implementation Plan
+# My Political Digest Design System Implementation Plan
 
 ## Project Analysis
 
