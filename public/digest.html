@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Digest — Guard1</title>
+  <meta name="description" content="Follow your favorite politicians and get the latest news.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <style>
+    /* Digest Page Specific Styles */
+    .digest-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+    
+    .politician-select {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-3);
+      margin: var(--space-4) 0;
+    }
+    
+    .politician-checkbox {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--grey-50);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .politician-checkbox:hover {
+      border-color: var(--purple-300);
+      background: var(--purple-50);
+    }
+    
+    .politician-checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--purple-600);
+      cursor: pointer;
+    }
+    
+    .politician-checkbox input[type="checkbox"]:checked + .politician-info {
+      color: var(--purple-700);
+    }
+    
+    .politician-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .politician-name {
+      font-weight: var(--weight-medium);
+      color: var(--grey-800);
+    }
+    
+    .politician-meta {
+      font-size: var(--text-sm);
+      color: var(--grey-500);
+    }
+    
+    .digest-actions {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+      margin: var(--space-4) 0;
+      flex-wrap: wrap;
+    }
+    
+    .refresh-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    
+    .refresh-btn.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    
+    .spinner {
+      display: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--purple-200);
+      border-top-color: var(--purple-600);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    .refresh-btn.loading .spinner {
+      display: inline-block;
+    }
+    
+    .refresh-btn.loading .btn-text {
+      display: none;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .sort-options {
+      display: flex;
+      gap: var(--space-2);
+      align-items: center;
+    }
+    
+    .sort-options label {
+      font-size: var(--text-sm);
+      color: var(--grey-600);
+    }
+    
+    .sort-options select {
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid var(--grey-300);
+      border-radius: var(--radius-sm);
+      background: white;
+      font-size: var(--text-sm);
+      cursor: pointer;
+    }
+    
+    .articles-list {
+      margin-top: var(--space-6);
+    }
+    
+    .article-item {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--grey-200);
+    }
+    
+    .article-item:last-child {
+      border-bottom: none;
+    }
+    
+    .article-title {
+      font-family: var(--font-sans);
+      font-size: var(--text-lg);
+      font-weight: var(--weight-medium);
+      margin-bottom: var(--space-2);
+    }
+    
+    .article-title a {
+      color: var(--purple-700);
+    }
+    
+    .article-title a:hover {
+      color: var(--purple-900);
+    }
+    
+    .article-meta {
+      font-size: var(--text-sm);
+      color: var(--grey-500);
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+    
+    .article-source {
+      color: var(--grey-600);
+    }
+    
+    .article-date {
+      color: var(--grey-500);
+    }
+    
+    .politician-tag {
+      display: inline-block;
+      padding: 2px var(--space-2);
+      background: var(--purple-100);
+      color: var(--purple-700);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: var(--space-8);
+      color: var(--grey-500);
+    }
+    
+    .error-message {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      margin: var(--space-4) 0;
+    }
+    
+    .grouped-articles {
+      margin-bottom: var(--space-6);
+    }
+    
+    .group-header {
+      font-family: var(--font-sans);
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      color: var(--purple-700);
+      padding: var(--space-3) 0;
+      border-bottom: 2px solid var(--purple-200);
+      margin-bottom: var(--space-3);
+    }
+    
+    .selected-count {
+      font-size: var(--text-sm);
+      color: var(--grey-600);
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand"><a href="index.html">My Political Digest</a></div>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="article.html">Articles</a></li>
+          <li><a href="state.html">State</a></li>
+          <li><a href="federal.html">Federal</a></li>
+          <li><a href="digest.html" class="active">Digest</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙 Dark</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>News Digest</h1>
+        <p>Select politicians to follow and get their latest news in one place.</p>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="container" style="padding: var(--space-3xl) 0;">
+      <div class="digest-container">
+        digest-container">
+        
+        <!-- Select Politicians -->
+        <div class="article-card" style="padding: var(--space-6); margin-bottom: var(--space-6);">
+          <h3 style="margin-bottom: var(--space-3);">Select Politicians to Follow</h3>
+          <div id="politicianList" class="politician-select">
+            <div class="empty-state">Loading politicians...</div>
+          </div>
+        </div>
+        
+        <!-- Actions -->
+        <div class="digest-actions">
+          <button id="refreshBtn" class="btn-primary refresh-btn">
+            <span class="spinner"></span>
+            <span class="btn-text">🔄 Refresh News</span>
+          </button>
+          
+          <div class="sort-options">
+            <label for="sortBy">Sort by:</label>
+            <select id="sortBy">
+              <option value="newest">Newest First</option>
+              <option value="politician">By Politician</option>
+            </select>
+          </div>
+          
+          <span class="selected-count" id="selectedCount">0 selected</span>
+        </div>
+        
+        <!-- Error Message -->
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+        
+        <!-- Articles -->
+        <div id="articlesList" class="articles-list">
+          <div class="empty-state">
+            <p>Select politicians above and click "Refresh News" to see their latest articles.</p>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 My Political Digest — Multiple Perspectives</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  
+  <script>
+    // ============================================
+    // DIGEST PAGE JAVASCRIPT
+    // ============================================
+    
+    // CONFIG: Update this to your deployed worker URL
+    const WORKER_URL = 'https://news-aggregator.yourname.workers.dev';
+    
+    const STORAGE_KEY = 'followedPoliticians';
+    
+    let politicians = [];
+    let articles = [];
+    let followedIds = [];
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadPoliticians();
+      loadFollowedFromStorage();
+      renderPoliticianList();
+      updateSelectedCount();
+    });
+    
+    // Load politicians from feeds.json
+    async function loadPoliticians() {
+      try {
+        const response = await fetch('feeds.json');
+        const data = await response.json();
+        
+        // Convert object to array
+        politicians = Object.entries(data).map(([id, info]) => ({
+          id,
+          ...info
+        }));
+        
+        // Sort by name
+        politicians.sort((a, b) => a.name.localeCompare(b.name));
+        
+      } catch (error) {
+        console.error('Error loading politicians:', error);
+        document.getElementById('politicianList').innerHTML = 
+          '<div class="error-message">Failed to load politicians. Please try again.</div>';
+      }
+    }
+    
+    // Load followed politicians from localStorage
+    function loadFollowedFromStorage() {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          followedIds = JSON.parse(stored);
+        } catch (e) {
+          followedIds = [];
+        }
+      }
+    }
+    
+    // Save followed politicians to localStorage
+    function saveFollowedToStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(followedIds));
+    }
+    
+    // Render politician checkboxes
+    function renderPoliticianList() {
+      const container = document.getElementById('politicianList');
+      
+      container.innerHTML = politicians.map(p => `
+        <label class="politician-checkbox">
+          <input type="checkbox" 
+                 value="${p.id}" 
+                 ${followedIds.includes(p.id) ? 'checked' : ''}
+                 onchange="togglePolitician('${p.id}')">
+          <span class="politician-info">
+            <span class="politician-name">${p.name}</span>
+            <span class="politician-meta">${p.role} • ${p.state}</span>
+          </span>
+        </label>
+      `).join('');
+    }
+    
+    // Toggle politician selection
+    function togglePolitician(id) {
+      const index = followedIds.indexOf(id);
+      
+      if (index === -1) {
+        followedIds.push(id);
+      } else {
+        followedIds.splice(index, 1);
+      }
+      
+      saveFollowedToStorage();
+      updateSelectedCount();
+    }
+    
+    // Update selected count display
+    function updateSelectedCount() {
+      document.getElementById('selectedCount').textContent = 
+        `${followedIds.length} selected`;
+    }
+    
+    // Refresh news button
+    document.getElementById('refreshBtn').addEventListener('click', fetchNews);
+    
+    // Sort change
+    document.getElementById('sortBy').addEventListener('change', renderArticles);
+    
+    // Fetch news from worker
+    async function fetchNews() {
+      if (followedIds.length === 0) {
+        showError('Please select at least one politician to follow.');
+        return;
+      }
+      
+      const btn = document.getElementById('refreshBtn');
+      const errorDiv = document.getElementById('errorMessage');
+      
+      btn.classList.add('loading');
+      errorDiv.style.display = 'none';
+      
+      try {
+        const idsParam = followedIds.join(',');
+        const response = await fetch(`${WORKER_URL}/?ids=${idsParam}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch news');
+        }
+        
+        const data = await response.json();
+        articles = data.articles || [];
+        
+        renderArticles();
+        
+      } catch (error) {
+        console.error('Error fetching news:', error);
+        showError('Failed to fetch news. Please try again later. Make sure the worker is deployed.');
+      } finally {
+        btn.classList.remove('loading');
+      }
+    }
+    
+    // Show error message
+    function showError(message) {
+      const errorDiv = document.getElementById('errorMessage');
+      errorDiv.textContent = message;
+      errorDiv.style.display = 'block';
+    }
+    
+    // Render articles
+    function renderArticles() {
+      const container = document.getElementById('articlesList');
+      const sortBy = document.getElementById('sortBy').value;
+      
+      if (articles.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <p>No articles found. Try selecting different politicians or check back later.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      if (sortBy === 'politician') {
+        // Group by politician
+        const grouped = {};
+        articles.forEach(article => {
+          const key = article.politicianName || article.politicianId;
+          if (!grouped[key]) grouped[key] = [];
+          grouped[key].push(article);
+        });
+        
+        container.innerHTML = Object.entries(grouped).map(([name, group]) => `
+          <div class="grouped-articles">
+            <div class="group-header">${name} (${group.length})</div>
+            ${group.map(article => renderArticleItem(article)).join('')}
+          </div>
+        `).join('');
+        
+      } else {
+        // Sort by date (newest first - already sorted from worker)
+        container.innerHTML = articles.map(article => renderArticleItem(article)).join('');
+      }
+    }
+    
+    // Render single article item
+    function renderArticleItem(article) {
+      const date = article.pubDate ? formatDate(article.pubDate) : 'Unknown date';
+      
+      return `
+        <div class="article-item">
+          <div class="article-title">
+            <a href="${article.link}" target="_blank" rel="noopener">${escapeHtml(article.title)}</a>
+          </div>
+          <div class="article-meta">
+            <span class="article-source">${escapeHtml(article.sourceName)}</span>
+            <span class="article-date">${date}</span>
+            <span class="politician-tag">${escapeHtml(article.politicianName)}</span>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Format date
+    function formatDate(dateString) {
+      try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+      } catch (e) {
+        return dateString;
+      }
+    }
+    
+    // Escape HTML
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+{
+  "josh-shapiro": {
+    "name": "Josh Shapiro",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "Governor",
+    "feeds": [
+      "https://www.governor.pa.gov/news/feed/"
+    ]
+  },
+  "austin-davis": {
+    "name": "Austin Davis",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "Lieutenant Governor",
+    "feeds": [
+      "https://www.governor.pa.gov/news/feed/"
+    ]
+  },
+  "john-fetterman": {
+    "name": "John Fetterman",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Senator",
+    "feeds": [
+      "https://www.fetterman.senate.gov/rss/"
+    ]
+  },
+  "bob-casey": {
+    "name": "Bob Casey Jr.",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Senator",
+    "feeds": [
+      "https://www.casey.senate.gov/rss/"
+    ]
+  },
+  "brendan-boyle": {
+    "name": "Brendan Boyle",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Representative PA-02",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "dwight-evans": {
+    "name": "Dwight Evans",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Representative PA-03",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "madeleine-dean": {
+    "name": "Madeleine Dean",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Representative PA-04",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "mary-gay-scanlon": {
+    "name": "Mary Gay Scanlon",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Representative PA-05",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "chrissy-houlahan": {
+    "name": "Chrissy Houlahan",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Representative PA-06",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "summer-lee": {
+    "name": "Summer Lee",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Representative PA-12",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "chris-deluzio": {
+    "name": "Chris Deluzio",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "U.S. Representative PA-17",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "jay-costa": {
+    "name": "Jay Costa",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "PA Senate Democratic Leader",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "joanna-mcclinton": {
+    "name": "Joanna McClinton",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "PA House Speaker",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "pa-democrats": {
+    "name": "Pennsylvania Democrats",
+    "party": "Democrat",
+    "state": "Pennsylvania",
+    "role": "State Party",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "generic-democrat-1": {
+    "name": "Generic Democrat - Coming Soon",
+    "party": "Democrat",
+    "state": "TBD",
+    "role": "TBD",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "generic-democrat-2": {
+    "name": "Generic Democrat 2 - Coming Soon",
+    "party": "Democrat",
+    "state": "TBD",
+    "role": "TBD",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "generic-republican-1": {
+    "name": "Generic Republican - Coming Soon",
+    "party": "Republican",
+    "state": "TBD",
+    "role": "TBD",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  },
+  "generic-republican-2": {
+    "name": "Generic Republican 2 - Coming Soon",
+    "party": "Republican",
+    "state": "TBD",
+    "role": "TBD",
+    "feeds": [
+      "https://example.com/feed.xml"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+name = "news-aggregator"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# Workers AI (not needed for this worker, but included for reference)
+# [ai]
+# binding = "AI"
+
+# KV Namespace for caching (optional - using built-in Cache API instead)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"
+
+# Environment variables
+# [env.production]
+# name = "news-aggregator-production"
+
+# Routes
+# Route pattern for custom domain (optional)
+# route = "news-aggregator.yourdomain.com/*"
