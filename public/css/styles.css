@@ -644,12 +644,83 @@ blockquote {
   font-size: var(--text-lg);
   font-weight: var(--weight-medium);
   color: var(--grey-800);
-  margin-bottom: var(--space-1);
 }
 
-.state-status {
+/* State List - New Layout */
+.state-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.state-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--grey-200);
+  transition: background 0.2s ease;
+}
+
+.state-row:hover {
+  background: var(--grey-50);
+}
+
+.state-row:last-child {
+  border-bottom: none;
+}
+
+.state-links {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.party-link {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
   font-size: var(--text-sm);
-  color: var(--grey-500);
+  font-weight: var(--weight-medium);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.party-democrat {
+  background: var(--purple-100);
+  color: var(--purple-700);
+  border: 1px solid var(--purple-300);
+}
+
+.party-democrat:hover {
+  background: var(--purple-200);
+  border-color: var(--purple-500);
+}
+
+.party-republican {
+  background: var(--grey-100);
+  color: var(--grey-700);
+  border: 1px solid var(--grey-300);
+}
+
+.party-republican:hover {
+  background: var(--grey-200);
+  border-color: var(--grey-500);
+}
+
+/* Split Columns - Federal Page */
+.split-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+@media (max-width: 900px) {
+  .split-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.split-column {
+  padding: var(--space-4);
 }
 
 /* ==========================================================================

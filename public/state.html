@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choose a State — Guard1</title>
-  <meta name="description" content="Select a U.S. state to view its Democratic elected officials.">
+  <meta name="description" content="Select a U.S. state to view its Democratic and Republican elected officials.">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,265 +39,462 @@
     <section class="hero">
       <div class="container">
         <h1>Choose a State</h1>
-        <p>Select a U.S. state to view its Democratic elected officials at the state and federal levels.</p>
+        <p>Select a U.S. state to view its Democratic and Republican elected officials.</p>
       </div>
     </section>
 
-    <section class="container" style="padding: var(--space-3xl) 0;"> <!-- State Grid="container" style="padding: var(--space-3xl) 0;">
-      <div class="state-grid">
+    <!-- State Grid -->
+    <section class="container" style="padding: var(--space-3xl) 0;">
+      <div class="state-list">
         
-        <!-- Active: Pennsylvania -->
-        <a href="articles/pa-elected-officials.html" class="state-card state-active">
-          <span class="state-name">Pennsylvania</span>
-          <span class="state-status">View Officials →</span>
-        </a>
-        
-        <!-- Coming Soon States -->
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Alabama</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Pennsylvania (Active) -->
+        <div class="state-row">
+          <div class="state-name">Pennsylvania</div>
+          <div class="state-links">
+            <a href="articles/pa-elected-officials.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/pa-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Alaska</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Alabama -->
+        <div class="state-row">
+          <div class="state-name">Alabama</div>
+          <div class="state-links">
+            <a href="articles/alabama-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/alabama-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Arizona</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Alaska -->
+        <div class="state-row">
+          <div class="state-name">Alaska</div>
+          <div class="state-links">
+            <a href="articles/alaska-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/alaska-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Arkansas</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Arizona -->
+        <div class="state-row">
+          <div class="state-name">Arizona</div>
+          <div class="state-links">
+            <a href="articles/arizona-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/arizona-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">California</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Arkansas -->
+        <div class="state-row">
+          <div class="state-name">Arkansas</div>
+          <div class="state-links">
+            <a href="articles/arkansas-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/arkansas-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Colorado</span>
-          <span class="state-status">Coming soon</span>
+        <!-- California -->
+        <div class="state-row">
+          <div class="state-name">California</div>
+          <div class="state-links">
+            <a href="articles/california-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/california-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Connecticut</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Colorado -->
+        <div class="state-row">
+          <div class="state-name">Colorado</div>
+          <div class="state-links">
+            <a href="articles/colorado-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/colorado-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Delaware</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Connecticut -->
+        <div class="state-row">
+          <div class="state-name">Connecticut</div>
+          <div class="state-links">
+            <a href="articles/connecticut-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/connecticut-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Florida</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Delaware -->
+        <div class="state-row">
+          <div class="state-name">Delaware</div>
+          <div class="state-links">
+            <a href="articles/delaware-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/delaware-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Georgia</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Florida -->
+        <div class="state-row">
+          <div class="state-name">Florida</div>
+          <div class="state-links">
+            <a href="articles/florida-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/florida-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Hawaii</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Georgia -->
+        <div class="state-row">
+          <div class="state-name">Georgia</div>
+          <div class="state-links">
+            <a href="articles/georgia-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/georgia-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Idaho</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Hawaii -->
+        <div class="state-row">
+          <div class="state-name">Hawaii</div>
+          <div class="state-links">
+            <a href="articles/hawaii-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/hawaii-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Illinois</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Idaho -->
+        <div class="state-row">
+          <div class="state-name">Idaho</div>
+          <div class="state-links">
+            <a href="articles/idaho-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/idaho-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Indiana</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Illinois -->
+        <div class="state-row">
+          <div class="state-name">Illinois</div>
+          <div class="state-links">
+            <a href="articles/illinois-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/illinois-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Iowa</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Indiana -->
+        <div class="state-row">
+          <div class="state-name">Indiana</div>
+          <div class="state-links">
+            <a href="articles/indiana-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/indiana-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Kansas</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Iowa -->
+        <div class="state-row">
+          <div class="state-name">Iowa</div>
+          <div class="state-links">
+            <a href="articles/iowa-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/iowa-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Kentucky</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Kansas -->
+        <div class="state-row">
+          <div class="state-name">Kansas</div>
+          <div class="state-links">
+            <a href="articles/kansas-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/kansas-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Louisiana</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Kentucky -->
+        <div class="state-row">
+          <div class="state-name">Kentucky</div>
+          <div class="state-links">
+            <a href="articles/kentucky-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/kentucky-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Maine</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Louisiana -->
+        <div class="state-row">
+          <div class="state-name">Louisiana</div>
+          <div class="state-links">
+            <a href="articles/louisiana-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/louisiana-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Maryland</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Maine -->
+        <div class="state-row">
+          <div class="state-name">Maine</div>
+          <div class="state-links">
+            <a href="articles/maine-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/maine-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Massachusetts</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Maryland -->
+        <div class="state-row">
+          <div class="state-name">Maryland</div>
+          <div class="state-links">
+            <a href="articles/maryland-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/maryland-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Michigan</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Massachusetts -->
+        <div class="state-row">
+          <div class="state-name">Massachusetts</div>
+          <div class="state-links">
+            <a href="articles/massachusetts-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/massachusetts-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Minnesota</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Michigan -->
+        <div class="state-row">
+          <div class="state-name">Michigan</div>
+          <div class="state-links">
+            <a href="articles/michigan-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/michigan-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Mississippi</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Minnesota -->
+        <div class="state-row">
+          <div class="state-name">Minnesota</div>
+          <div class="state-links">
+            <a href="articles/minnesota-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/minnesota-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Missouri</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Mississippi -->
+        <div class="state-row">
+          <div class="state-name">Mississippi</div>
+          <div class="state-links">
+            <a href="articles/mississippi-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/mississippi-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Montana</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Missouri -->
+        <div class="state-row">
+          <div class="state-name">Missouri</div>
+          <div class="state-links">
+            <a href="articles/missouri-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/missouri-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Nebraska</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Montana -->
+        <div class="state-row">
+          <div class="state-name">Montana</div>
+          <div class="state-links">
+            <a href="articles/montana-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/montana-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Nevada</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Nebraska -->
+        <div class="state-row">
+          <div class="state-name">Nebraska</div>
+          <div class="state-links">
+            <a href="articles/nebraska-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/nebraska-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">New Hampshire</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Nevada -->
+        <div class="state-row">
+          <div class="state-name">Nevada</div>
+          <div class="state-links">
+            <a href="articles/nevada-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/nevada-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">New Jersey</span>
-          <span class="state-status">Coming soon</span>
-        </div></span>
-         state-status">Coming soon</span>
+        <!-- New Hampshire -->
+        <div class="state-row">
+          <div class="state-name">New Hampshire</div>
+          <div class="state-links">
+            <a href="articles/new-hampshire-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/new-hampshire-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">New Mexico</span>
-          <span class="state-status">Coming soon</span>
+        <!-- New Jersey -->
+        <div class="state-row">
+          <div class="state-name">New Jersey</div>
+          <div class="state-links">
+            <a href="articles/new-jersey-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/new-jersey-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">New York</span>
-          <span class="state-status">Coming soon</span>
+        <!-- New Mexico -->
+        <div class="state-row">
+          <div class="state-name">New Mexico</div>
+          <div class="state-links">
+            <a href="articles/new-mexico-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/new-mexico-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">North Carolina</span>
-          <span class="state-status">Coming soon</span>
+        <!-- New York -->
+        <div class="state-row">
+          <div class="state-name">New York</div>
+          <div class="state-links">
+            <a href="articles/new-york-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/new-york-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">North Dakota</span>
-          <span class="state-status">Coming soon</span>
+        <!-- North Carolina -->
+        <div class="state-row">
+          <div class="state-name">North Carolina</div>
+          <div class="state-links">
+            <a href="articles/north-carolina-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/north-carolina-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Ohio</span>
-          <span class="state-status">Coming soon</span>
+        <!-- North Dakota -->
+        <div class="state-row">
+          <div class="state-name">North Dakota</div>
+          <div class="state-links">
+            <a href="articles/north-dakota-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/north-dakota-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Oklahoma</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Ohio -->
+        <div class="state-row">
+          <div class="state-name">Ohio</div>
+          <div class="state-links">
+            <a href="articles/ohio-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/ohio-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Oregon</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Oklahoma -->
+        <div class="state-row">
+          <div class="state-name">Oklahoma</div>
+          <div class="state-links">
+            <a href="articles/oklahoma-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/oklahoma-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Rhode Island</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Oregon -->
+        <div class="state-row">
+          <div class="state-name">Oregon</div>
+          <div class="state-links">
+            <a href="articles/oregon-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/oregon-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">South Carolina</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Rhode Island -->
+        <div class="state-row">
+          <div class="state-name">Rhode Island</div>
+          <div class="state-links">
+            <a href="articles/rhode-island-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/rhode-island-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">South Dakota</span>
-          <span class="state-status">Coming soon</span>
+        <!-- South Carolina -->
+        <div class="state-row">
+          <div class="state-name">South Carolina</div>
+          <div class="state-links">
+            <a href="articles/south-carolina-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/south-carolina-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Tennessee</span>
-          <span class="state-status">Coming soon</span>
+        <!-- South Dakota -->
+        <div class="state-row">
+          <div class="state-name">South Dakota</div>
+          <div class="state-links">
+            <a href="articles/south-dakota-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/south-dakota-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Texas</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Tennessee -->
+        <div class="state-row">
+          <div class="state-name">Tennessee</div>
+          <div class="state-links">
+            <a href="articles/tennessee-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/tennessee-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Utah</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Texas -->
+        <div class="state-row">
+          <div class="state-name">Texas</div>
+          <div class="state-links">
+            <a href="articles/texas-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/texas-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Vermont</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Utah -->
+        <div class="state-row">
+          <div class="state-name">Utah</div>
+          <div class="state-links">
+            <a href="articles/utah-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/utah-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Virginia</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Vermont -->
+        <div class="state-row">
+          <div class="state-name">Vermont</div>
+          <div class="state-links">
+            <a href="articles/vermont-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/vermont-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Washington</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Virginia -->
+        <div class="state-row">
+          <div class="state-name">Virginia</div>
+          <div class="state-links">
+            <a href="articles/virginia-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/virginia-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">West Virginia</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Washington -->
+        <div class="state-row">
+          <div class="state-name">Washington</div>
+          <div class="state-links">
+            <a href="articles/washington-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/washington-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Wisconsin</span>
-          <span class="state-status">Coming soon</span>
+        <!-- West Virginia -->
+        <div class="state-row">
+          <div class="state-name">West Virginia</div>
+          <div class="state-links">
+            <a href="articles/west-virginia-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/west-virginia-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
-        <div class="state-card state-coming-soon">
-          <span class="state-name">Wyoming</span>
-          <span class="state-status">Coming soon</span>
+        <!-- Wisconsin -->
+        <div class="state-row">
+          <div class="state-name">Wisconsin</div>
+          <div class="state-links">
+            <a href="articles/wisconsin-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/wisconsin-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
+        </div>
+        
+        <!-- Wyoming -->
+        <div class="state-row">
+          <div class="state-name">Wyoming</div>
+          <div class="state-links">
+            <a href="articles/wyoming-democrats.html" class="party-link party-democrat">Democrats →</a>
+            <a href="articles/wyoming-republicans.html" class="party-link party-republican">Republicans →</a>
+          </div>
         </div>
         
       </div>
