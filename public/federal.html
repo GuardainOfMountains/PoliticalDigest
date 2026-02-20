@@ -217,153 +217,115 @@
   <script src="js/script.js"></script>
   
   <script>
-    // RSS Feed Configuration - using Cloudflare Worker API
-    // The worker fetches RSS feeds server-side, avoiding CORS issues
-    const RSS_FEEDS = {
-      republican: {
-        workerIds: 'republican-party',
-        elementId: 'republican-feed'
-      },
-      democrat: {
-        workerIds: 'democrat-party',
-        elementId: 'democrat-feed'
-      }
-    };
+// RSS Feed Configuration
+const RSS_FEEDS = {
+  republican: {
+    url: 'https://moxie.foxnews.com/google-publisher/politics.xml',
+    elementId: 'republican-feed',
+    name: 'Fox News'
+  },
+  democrat: {
+    url: 'https://rss.cnn.com/rss/cnn_allpolitics.rss',
+    elementId: 'democrat-feed',
+    name: 'CNN'
+  }
+};
 
-    // Cloudflare Worker API URL
-    // Replace YOUR-ACCOUNT with your Cloudflare account name after running `wrangler deploy`
-    const WORKER_API_URL = 'https://news-aggregator.guardianofmountains.workers.dev';
-    // Fallback CORS proxy (used if worker fails)
-    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-    // Parse RSS XML
-    function parseRSS(xmlText) {
-      const articles = [];
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(xmlText, 'text/xml');
-      
-      // Check for parsing errors
-      const parseError = xml.querySelector('parsererror');
-      if (parseError) {
-        console.error('RSS Parse Error:', parseError.textContent);
-        return [];
-      }
-      
-      const items = xml.querySelectorAll('item');
-      items.forEach((item, index) => {
-        if (index >= 8) return; // Limit to 8 items per feed
-        
-        const title = item.querySelector('title');
-        const link = item.querySelector('link');
-        const pubDate = item.querySelector('pubDate');
-        
-        if (title && link) {
-          articles.push({
-            title: title.textContent,
-            link: link.textContent,
-            pubDate: pubDate ? new Date(pubDate.textContent) : null
-          });
-        }
+// CORS Proxy
+const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+
+function parseRSS(xmlText) {
+  const articles = [];
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(xmlText, 'application/xml');
+  
+  // Check for parsing errors
+  if (xml.querySelector('parsererror')) {
+    console.error('XML Parse Error');
+    return [];
+  }
+  
+  const items = xml.querySelectorAll('item');
+  items.forEach((item, index) => {
+    if (index >= 5) return; // Limit to 5 items
+    
+    const title = item.querySelector('title');
+    const link = item.querySelector('link');
+    const pubDate = item.querySelector('pubDate');
+    
+    if (title && link) {
+      articles.push({
+        title: title.textContent.replace(/<!\[CDATA\[|\]\]>/g, '').trim(),
+        link: link.textContent.trim(),
+        date: pubDate ? new Date(pubDate.textContent) : null
       });
-      
-      return articles;
     }
+  });
+  
+  return articles;
+}
 
-    // Format date
-    function formatDate(date) {
-      if (!date) return '';
-      const now = new Date();
-      const diff = now - date;
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      const days = Math.floor(hours / 24);
-      
-      if (hours < 1) return 'Just now';
-      if (hours < 24) return `${hours}h ago`;
-      if (days < 7) return `${days}d ago`;
-      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+function formatDate(date) {
+  if (!date) return '';
+  const now = new Date();
+  const diff = now - date;
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  const days = Math.floor(hours / 24);
+  
+  if (hours < 1) return 'Just now';
+  if (hours < 24) return hours + 'h ago';
+  if (days < 7) return days + 'd ago';
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+async function loadFeed(key) {
+  const feed = RSS_FEEDS[key];
+  const element = document.getElementById(feed.elementId);
+  
+  if (!element) {
+    console.error('Element not found:', feed.elementId);
+    return;
+  }
+  
+  try {
+    element.innerHTML = '<div class="rss-loading">Loading ' + feed.name + '...</div>';
+    
+    const proxyUrl = CORS_PROXY + encodeURIComponent(feed.url);
+    const response = await fetch(proxyUrl);
+    
+    if (!response.ok) {
+      throw new Error('HTTP ' + response.status);
     }
-
-    // Render feed items - now uses Cloudflare Worker API
-    async function renderFeed(feedKey) {
-      const feed = RSS_FEEDS[feedKey];
-      const element = document.getElementById(feed.elementId);
-      
-      if (!element) return;
-      
-      try {
-        // Try worker API first
-        const workerUrl = WORKER_API_URL + '?ids=' + feed.workerIds;
-        const response = await fetch(workerUrl);
-        
-        if (!response.ok) throw new Error('Worker response not ok');
-        
-        const data = await response.json();
-        const articles = data.articles || [];
-        
-        if (articles.length === 0) {
-          // Fallback to direct CORS proxy
-          await fetchWithCorsProxy(feedKey, element);
-          return;
-        }
-        
-        element.innerHTML = articles.map(article => 
-          '<div class="rss-item">' +
-            '<a href="' + article.link + '" target="_blank" rel="noopener">' + article.title + '</a>' +
-            (article.pubDate ? '<span class="rss-date">' + formatDate(new Date(article.pubDate)) + '</span>' : '') +
-          '</div>'
-        ).join('');
-      } catch (error) {
-        console.error('Error fetching from worker:', error);
-        // Fallback to direct CORS proxy
-        await fetchWithCorsProxy(feedKey, element);
-      }
+    
+    const xmlText = await response.text();
+    const articles = parseRSS(xmlText);
+    
+    if (articles.length === 0) {
+      element.innerHTML = '<div class="rss-error">No articles found</div>';
+      return;
     }
+    
+    element.innerHTML = articles.map(article => 
+      '<div class="rss-item" style="margin-bottom: 12px; padding: 8px; background: rgba(0,0,0,0.05); border-radius: 4px;">' +
+        '<a href="' + article.link + '" target="_blank" rel="noopener" style="text-decoration: none; color: inherit; font-weight: 500;">' + 
+          article.title + 
+        '</a>' +
+        (article.date ? '<div style="font-size: 0.85em; color: #666; margin-top: 4px;">' + formatDate(article.date) + '</div>' : '') +
+      '</div>'
+    ).join('');
+    
+  } catch (error) {
+    console.error('Error loading ' + feed.name + ':', error);
+    element.innerHTML = '<div class="rss-error">Unable to load ' + feed.name + ' feed<br><small>' + error.message + '</small></div>';
+  }
+}
 
-    // Fallback: fetch directly with CORS proxy
-    async function fetchWithCorsProxy(feedKey, element) {
-      var feedConfig = {
-        republican: { url: 'https://moxie.foxnews.com/google-publisher/politics.xml'},
-	democrat: { url: 'https://rss.cnn.com/rss/cnn_allpolitics.rss'}
-      };
-      
-      var config = feedConfig[feedKey];
-      if (!config) {
-        element.innerHTML = '<div class="rss-error">Unable to load feed</div>';
-        return;
-      }
-      
-      var proxyUrl = CORS_PROXY + encodeURIComponent(config.url);
-      
-      fetch(proxyUrl)
-        .then(function(response) {
-          if (!response.ok) throw new Error('Network response was not ok');
-          return response.text();
-        })
-        .then(function(xmlText) {
-          var articles = parseRSS(xmlText);
-          
-          if (articles.length === 0) {
-            element.innerHTML = '<div class="rss-error">No articles found</div>';
-            return;
-          }
-          
-          element.innerHTML = articles.map(function(article) {
-            return '<div class="rss-item">' +
-              '<a href="' + article.link + '" target="_blank" rel="noopener">' + article.title + '</a>' +
-              (article.pubDate ? '<span class="rss-date">' + formatDate(article.pubDate) + '</span>' : '') +
-            '</div>';
-          }).join('');
-        })
-        .catch(function(error) {
-          console.error('Error fetching RSS feed:', error);
-          element.innerHTML = '<div class="rss-error">Unable to load feed</div>';
-        });
-    }
-
-    // Initialize feeds on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      renderFeed('republican');
-      renderFeed('democrat');
-    });
-  </script>
+// Load both feeds when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Loading RSS feeds...');
+  loadFeed('republican');
+  loadFeed('democrat');
+});
+</script>
 </body>
 </html>
