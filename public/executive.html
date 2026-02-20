@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Branch — My Political Digest</title>
+  <meta name="description" content="The U.S. Executive Branch - President, Vice President, and Cabinet.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand"><a href="index.html">My Political Digest</a></div>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="federal.html">Federal</a></li>
+          <li><a href="legislative.html">Legislative</a></li>
+          <li><a href="executive.html" class="active">Executive</a></li>
+          <li><a href="judicial.html">Judicial</a></li>
+          <li><a href="digest.html">Digest</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙 Dark</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article">
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="container">
+        <span class="article-category">U.S. Government</span>
+        <h1>The Executive Branch</h1>
+        <p class="article-subtitle">The branch of government that enforces laws</p>
+        <div class="article-meta">
+          <time datetime="2026-02-20">February 20, 2026</time>
+        </div>
+      </div>
+    </header>
+
+    <!-- Introduction -->
+    <section class="section section-facts">
+      <div class="container">
+        <h2>Overview</h2>
+        <p>The executive branch is one of the three branches of the U.S. federal government, established by Article II of the Constitution. It is responsible for enforcing and administering federal laws, conducting foreign policy, and serving as commander-in-chief of the armed forces.</p>
+      </div>
+    </section>
+
+    <!-- President and Vice President -->
+    <section class="section">
+      <div class="container">
+        <h2>The President and Vice President</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); margin-top: var(--space-6);">
+          
+          <!-- President -->
+          <div class="article-card">
+            <h3 style="color: var(--purple-700);">The President</h3>
+            <p><strong>4-year term</strong> (limited to 2 terms)</p>
+            
+            <h4 style="margin-top: var(--space-4);">Key Powers</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li>Commander-in-chief of the armed forces</li>
+              <li>Can veto legislation</li>
+              <li>Appoints federal judges and Cabinet members</li>
+              <li>Conducts foreign relations</li>
+              <li>Grants pardons and reprieves</li>
+              <li>Calls special sessions of Congress</li>
+            </ul>
+            
+            <h4 style="margin-top: var(--space-4);">Requirements</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li>Natural-born citizen</li>
+              <li>At least 35 years old</li>
+              <li>At least 14 years resident in the U.S.</li>
+            </ul>
+          </div>
+          
+          <!-- Vice President -->
+          <div class="article-card">
+            <h3 style="color: var(--purple-700);">The Vice President</h3>
+            <p><strong>4-year term</strong> (same ballot as President)</p>
+            
+            <h4 style="margin-top: var(--space-4);">Key Powers</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li>President of the Senate</li>
+              <li>Breaks ties in the Senate</li>
+              <li>Assumes the presidency if President cannot serve</li>
+              <li>Counts electoral votes in Congress</li>
+            </ul>
+            
+            <h4 style="margin-top: var(--space-4);">Requirements</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li>Natural-born citizen</li>
+              <li>At least 35 years old</li>
+              <li>At least 14 years resident in the U.S.</li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- The Cabinet -->
+    <section class="section section-facts">
+      <div class="container">
+        <h2>The Cabinet</h2>
+        <p>The Cabinet consists of the Vice President and the heads of 15 executive departments. Cabinet members are appointed by the President and confirmed by the Senate.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-3); margin-top: var(--space-4);">
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">State</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of State</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Treasury</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of the Treasury</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Defense</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of Defense</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Justice</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Attorney General</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Interior</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of the Interior</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Agriculture</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of Agriculture</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Commerce</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of Commerce</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Labor</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of Labor</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Health and Human Services</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of HHS</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Housing and Urban Development</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of HUD</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Transportation</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of Transportation</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Energy</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of Energy</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Education</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of Education</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Veterans Affairs</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of VA</p>
+          </div>
+          
+          <div class="feature" style="padding: var(--space-3);">
+            <h4 style="color: var(--purple-700); font-size: var(--text-sm);">Homeland Security</h4>
+            <p style="font-size: var(--text-xs); margin: 0;">Secretary of DHS</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Executive Offices -->
+    <section class="section">
+      <div class="container">
+        <h2>Executive Office of the President</h2>
+        <p>In addition to the Cabinet, the President is supported by several offices within the Executive Office of the President (EOP):</p>
+        
+        <ul style="margin-left: var(--space-6); margin-top: var(--space-4); line-height: 2;">
+          <li><strong>White House Office:</strong> Senior advisors and staff</li>
+          <li><strong>National Security Council:</strong> Foreign policy and national security</li>
+          <li><strong>Council of Economic Advisers:</strong> Economic policy</li>
+          <li><strong>Office of Management and Budget:</strong> Budget and administration</li>
+          <li><strong>Office of the Vice President:</strong> VP's staff and operations</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Constitutional Basis -->
+    <section class="section section-facts">
+      <div class="container">
+        <h2>Constitutional Foundation</h2>
+        <blockquote style="border-left: 4px solid var(--purple-500); padding-left: var(--space-4); margin: var(--space-4) 0; font-style: italic;">
+          "The executive Power shall be vested in a President of the United States of America. He shall hold his Office during the Term of four Years..."
+        </blockquote>
+        <p style="margin-top: var(--space-4);">— Article II, Section 1 of the U.S. Constitution</p>
+        
+        <p style="margin-top: var(--space-4);">Article II establishes the presidency and grants the President specific powers including the veto, appointment powers, and command of the military.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 My Political Digest — Multiple Perspectives</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

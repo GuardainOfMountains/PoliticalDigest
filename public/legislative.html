@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legislative Branch — My Political Digest</title>
+  <meta name="description" content="The U.S. Legislative Branch - Congress, Senate, and House of Representatives.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand"><a href="index.html">My Political Digest</a></div>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="federal.html">Federal</a></li>
+          <li><a href="legislative.html" class="active">Legislative</a></li>
+          <li><a href="executive.html">Executive</a></li>
+          <li><a href="judicial.html">Judicial</a></li>
+          <li><a href="digest.html">Digest</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">🌙 Dark</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article">
+    <!-- Article Header -->
+    <header class="article-header">
+      <div class="container">
+        <span class="article-category">U.S. Government</span>
+        <h1>The Legislative Branch</h1>
+        <p class="article-subtitle">Congress - The branch of government that makes laws</p>
+        <div class="article-meta">
+          <time datetime="2026-02-20">February 20, 2026</time>
+        </div>
+      </div>
+    </header>
+
+    <!-- Introduction -->
+    <section class="section section-facts">
+      <div class="container">
+        <h2>Overview</h2>
+        <p>The legislative branch is one of the three branches of the U.S. federal government, established by Article I of the Constitution. It is responsible for making federal laws, declaring war, approving presidential appointments, and controlling the federal budget.</p>
+      </div>
+    </section>
+
+    <!-- Congress Structure -->
+    <section class="section">
+      <div class="container">
+        <h2>The Congress of the United States</h2>
+        <p>Congress is a bicameral legislature, meaning it has two chambers: the Senate and the House of Representatives.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); margin-top: var(--space-6);">
+          
+          <!-- Senate -->
+          <div class="article-card">
+            <h3 style="color: var(--purple-700);">The Senate</h3>
+            <p><strong>100 Senators</strong> — Two senators from each state, serving 6-year terms.</p>
+            
+            <h4 style="margin-top: var(--space-4);">Leadership</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li><strong>President:</strong> Vice President of the United States</li>
+              <li><strong>President Pro Tempore:</strong> Senior majority party senator</li>
+            </ul>
+            
+            <h4 style="margin-top: var(--space-4);">Key Powers</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li>Confirming presidential appointments (Cabinet, judges)</li>
+              <li>Ratifying treaties</li>
+              <li>Conducting impeachment trials</li>
+              <li>Approving the federal budget</li>
+            </ul>
+          </div>
+          
+          <!-- House of Representatives -->
+          <div class="article-card">
+            <h3 style="color: var(--purple-700);">House of Representatives</h3>
+            <p><strong>435 Representatives</strong> — Based on state population, serving 2-year terms.</p>
+            
+            <h4 style="margin-top: var(--space-4);">Leadership</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li><strong>Speaker of the House:</strong> Leader of the majority party</li>
+            </ul>
+            
+            <h4 style="margin-top: var(--space-4);">Key Powers</h4>
+            <ul style="margin-left: var(--space-4); margin-top: var(--space-2);">
+              <li>Originating revenue bills</li>
+              <li>Initiating impeachment proceedings</li>
+              <li>Electing the President in case of electoral college tie</li>
+              <li>Approving presidential appointments</li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Current Congress -->
+    <section class="section section-facts">
+      <div class="container">
+        <h2>117th Congress (2025-2027)</h2>
+        <p>Republican majority in Congress as of February 2026.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin-top: var(--space-4);">
+          
+          <div class="stat-highlight">
+            <div class="stat-number">53</div>
+            <div class="stat-label">Senate Republicans</div>
+          </div>
+          
+          <div class="stat-highlight">
+            <div class="stat-number">45</div>
+            <div class="stat-label">Senate Democrats</div>
+          </div>
+          
+          <div class="stat-highlight">
+            <div class="stat-number">222</div>
+            <div class="stat-label">House Republicans</div>
+          </div>
+          
+          <div class="stat-highlight">
+            <div class="stat-number">213</div>
+            <div class="stat-label">House Democrats</div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- How a Bill Becomes Law -->
+    <section class="section">
+      <div class="container">
+        <h2>How a Bill Becomes Law</h2>
+        
+        <div style="margin-top: var(--space-4);">
+          <ol style="margin-left: var(--space-6); line-height: 2;">
+            <li><strong>Introduction:</strong> A bill can be introduced in either the House or Senate</li>
+            <li><strong>Committee Action:</strong> The bill is sent to a committee for study and debate</li>
+            <li><strong>Floor Action:</strong> The bill is debated and voted on in the originating chamber</li>
+            <li><strong>Second Chamber:</strong> The bill goes to the other chamber, which may approve, reject, or amend</li>
+            <li><strong>Conference Committee:</strong> Differences between versions are reconciled</li>
+            <li><strong>Presidential Action:</strong> The President signs the bill into law or vetoes it</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Constitutional Basis -->
+    <section class="section section-facts">
+      <div class="container">
+        <h2>Constitutional Foundation</h2>
+        <blockquote style="border-left: 4px solid var(--purple-500); padding-left: var(--space-4); margin: var(--space-4) 0; font-style: italic;">
+          "All Bills for raising Revenue shall originate in the House of Representatives; but the Senate may propose or concur with Amendments as on other Bills."
+        </blockquote>
+        <p style="margin-top: var(--space-4);">— Article I, Section 7 of the U.S. Constitution</p>
+        
+        <p style="margin-top: var(--space-4);">Article I grants Congress enumerated powers and the Necessary and Proper Clause, allowing Congress to make laws "necessary and proper" for carrying out its duties.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 My Political Digest — Multiple Perspectives</p>
+      <nav class="footer-nav">
+        <a href="about.html">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
