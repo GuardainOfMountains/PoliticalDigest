@@ -230,13 +230,20 @@
     };
 
     // CORS Proxy - using a public proxy service
-    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+    const CORS_PROXY = 'https://corsproxy.io/?';
 
     // Parse RSS XML
     function parseRSS(xmlText) {
       const articles = [];
       const parser = new DOMParser();
       const xml = parser.parseFromString(xmlText, 'text/xml');
+      
+      // Check for parsing errors
+      const parseError = xml.querySelector('parsererror');
+      if (parseError) {
+        console.error('RSS Parse Error:', parseError.textContent);
+        return [];
+      }
       
       const items = xml.querySelectorAll('item');
       items.forEach((item, index) => {
@@ -279,7 +286,7 @@
       
       if (!element) return;
       
-      // Use AllOrigins as CORS proxy
+      // Use corsproxy.io as CORS proxy
       const proxyUrl = CORS_PROXY + encodeURIComponent(feed.url);
       
       fetch(proxyUrl)
