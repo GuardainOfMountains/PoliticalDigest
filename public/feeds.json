@@ -160,5 +160,23 @@
     "feeds": [
       "https://example.com/feed.xml"
     ]
+  },
+  "republican-party": {
+    "name": "Republican Party",
+    "party": "Republican",
+    "state": "National",
+    "role": "Party",
+    "feeds": [
+      "https://moxie.foxnews.com/google-publisher/politics.xml"
+    ]
+  },
+  "democrat-party": {
+    "name": "Democratic Party",
+    "party": "Democrat",
+    "state": "National",
+    "role": "Party",
+    "feeds": [
+      "https://rss.cnn.com/rss/cnn_allpolitics.rss"
+    ]
   }
 }

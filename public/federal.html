@@ -217,20 +217,25 @@
   <script src="js/script.js"></script>
   
   <script>
-    // RSS Feed Configuration
+    // RSS Feed Configuration - using Cloudflare Worker API
+    // The worker fetches RSS feeds server-side, avoiding CORS issues
     const RSS_FEEDS = {
       republican: {
-        url: 'https://moxie.foxnews.com/google-publisher/politics.xml',
+        workerIds: 'republican-party',
         elementId: 'republican-feed'
       },
       democrat: {
-        url: 'http://rss.cnn.com/rss/cnn_allpolitics.rss',
+        workerIds: 'democrat-party',
         elementId: 'democrat-feed'
       }
     };
 
-    // CORS Proxy - using a public proxy service
-    const CORS_PROXY = 'https://corsproxy.io/?';
+    // Cloudflare Worker API URL
+    // Update this to your deployed worker URL
+    const WORKER_API_URL = '/workers/news-aggregator';
+
+    // Fallback CORS proxy (used if worker fails)
+    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
 
     // Parse RSS XML
     function parseRSS(xmlText) {
@@ -279,15 +284,56 @@
       return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     }
 
-    // Render feed items
-    function renderFeed(feedKey) {
+    // Render feed items - now uses Cloudflare Worker API
+    async function renderFeed(feedKey) {
       const feed = RSS_FEEDS[feedKey];
       const element = document.getElementById(feed.elementId);
       
       if (!element) return;
       
-      // Use corsproxy.io as CORS proxy
-      const proxyUrl = CORS_PROXY + encodeURIComponent(feed.url);
+      try {
+        // Try worker API first
+        const workerUrl = `${WORKER_API_URL}?ids=${feed.workerIds}`;
+        const response = await fetch(workerUrl);
+        
+        if (!response.ok) throw new Error('Worker response not ok');
+        
+        const data = await response.json();
+        const articles = data.articles || [];
+        
+        if (articles.length === 0) {
+          // Fallback to direct CORS proxy
+          await fetchWithCorsProxy(feedKey, element);
+          return;
+        }
+        
+        element.innerHTML = articles.map(article => `
+          <div class="rss-item">
+            <a href="${article.link}" target="_blank" rel="noopener">${article.title}</a>
+            ${article.pubDate ? `<span class="rss-date">${formatDate(new Date(article.pubDate))}</span>` : ''}
+          </div>
+        `).join('');
+      } catch (error) {
+        console.error('Error fetching from worker:', error);
+        // Fallback to direct CORS proxy
+        await fetchWithCorsProxy(feedKey, element);
+      }
+    }
+
+    // Fallback: fetch directly with CORS proxy
+    async function fetchWithCorsProxy(feedKey, element) {
+      const feedConfig = {
+        republican: { url: 'https://moxie.foxnews.com/google-publisher/politics.xml' },
+        democrat: { url: 'https://rss.cnn.com/rss/cnn_allpolitics.rss' }
+      };
+      
+      const config = feedConfig[feedKey];
+      if (!config) {
+        element.innerHTML = '<div class="rss-error">Unable to load feed</div>';
+        return;
+      }
+      
+      const proxyUrl = CORS_PROXY + encodeURIComponent(config.url);
       
       fetch(proxyUrl)
         .then(response => {
