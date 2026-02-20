@@ -111,7 +111,7 @@
               <div id="democrat-feed" class="rss-feed-list">
                 <div class="rss-loading">Loading CNN politics news...</div>
               </div>
-              <a href="https://rss.cnn.com/rss/cnn_allpolitics.rss" target="_blank" class="rss-link">View Full Feed →</a>
+              <a href="https://rss.cnn.com/rss/cnn_allpolitics.rss" target=" _blank" class="rss-link">View Full Feed →</a>
             </div>
           </div>
           
@@ -180,7 +180,7 @@
               <div id="republican-feed" class="rss-feed-list">
                 <div class="rss-loading">Loading Fox News politics...</div>
               </div>
-              <a href="https://moxie.foxnews.com/google-publisher/politics.xml" target="_blank" class="rss-link">View Full Feed →</a>
+              <a href="https://moxie.foxnews.com/google-publisher/politics.xml" target=" _blank" class="rss-link">View Full Feed →</a>
             </div>
           </div>
           
@@ -233,10 +233,8 @@
     // Cloudflare Worker API URL
     // Replace YOUR-ACCOUNT with your Cloudflare account name after running `wrangler deploy`
     const WORKER_API_URL = 'https://news-aggregator.guardianofmountains.workers.dev';
-
     // Fallback CORS proxy (used if worker fails)
     const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-
     // Parse RSS XML
     function parseRSS(xmlText) {
       const articles = [];
@@ -323,8 +321,8 @@
     // Fallback: fetch directly with CORS proxy
     async function fetchWithCorsProxy(feedKey, element) {
       var feedConfig = {
-        republican: { url: 'https://moxie.foxnews.com/google-publisher/politics.xml' },
-        democrat: { url: 'https://rss.cnn.com/rss/cnn_allpolitics.rss' }
+        republican: { url: 'https://moxie.foxnews.com/google-publisher/politics.xml'},
+        democrat: { url: 'https://rss.cnn.com/rss/cnn_allpolitics.rss'}
       };
       
       var config = feedConfig[feedKey];
