@@ -104,6 +104,15 @@
               <span class="stat-number">48</span>
               <span class="stat-label">Senate Democrats</span>
             </div>
+            
+            <!-- Democrat RSS Feed Section -->
+            <div class="rss-feed-section" style="margin-top: var(--space-6);">
+              <h4>Latest Democrat News</h4>
+              <div id="democrat-feed" class="rss-feed-list">
+                <div class="rss-loading">Loading CNN politics news...</div>
+              </div>
+              <a href="http://rss.cnn.com/rss/cnn_allpolitics.rss" target="_blank" class="rss-link">View Full Feed →</a>
+            </div>
           </div>
           
           <!-- RIGHT: Republicans -->
@@ -164,6 +173,15 @@
               <span class="stat-number">53</span>
               <span class="stat-label">Senate Republicans</span>
             </div>
+            
+            <!-- Republican RSS Feed Section -->
+            <div class="rss-feed-section" style="margin-top: var(--space-6);">
+              <h4>Latest Republican News</h4>
+              <div id="republican-feed" class="rss-feed-list">
+                <div class="rss-loading">Loading Fox News politics...</div>
+              </div>
+              <a href="https://moxie.foxnews.com/google-publisher/politics.xml" target="_blank" class="rss-link">View Full Feed →</a>
+            </div>
           </div>
           
         </div>
@@ -197,5 +215,104 @@
   </footer>
 
   <script src="js/script.js"></script>
+  
+  <script>
+    // RSS Feed Configuration
+    const RSS_FEEDS = {
+      republican: {
+        url: 'https://moxie.foxnews.com/google-publisher/politics.xml',
+        elementId: 'republican-feed'
+      },
+      democrat: {
+        url: 'http://rss.cnn.com/rss/cnn_allpolitics.rss',
+        elementId: 'democrat-feed'
+      }
+    };
+
+    // CORS Proxy - using a public proxy service
+    const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+
+    // Parse RSS XML
+    function parseRSS(xmlText) {
+      const articles = [];
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(xmlText, 'text/xml');
+      
+      const items = xml.querySelectorAll('item');
+      items.forEach((item, index) => {
+        if (index >= 8) return; // Limit to 8 items per feed
+        
+        const title = item.querySelector('title');
+        const link = item.querySelector('link');
+        const pubDate = item.querySelector('pubDate');
+        
+        if (title && link) {
+          articles.push({
+            title: title.textContent,
+            link: link.textContent,
+            pubDate: pubDate ? new Date(pubDate.textContent) : null
+          });
+        }
+      });
+      
+      return articles;
+    }
+
+    // Format date
+    function formatDate(date) {
+      if (!date) return '';
+      const now = new Date();
+      const diff = now - date;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const days = Math.floor(hours / 24);
+      
+      if (hours < 1) return 'Just now';
+      if (hours < 24) return `${hours}h ago`;
+      if (days < 7) return `${days}d ago`;
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    // Render feed items
+    function renderFeed(feedKey) {
+      const feed = RSS_FEEDS[feedKey];
+      const element = document.getElementById(feed.elementId);
+      
+      if (!element) return;
+      
+      // Use AllOrigins as CORS proxy
+      const proxyUrl = CORS_PROXY + encodeURIComponent(feed.url);
+      
+      fetch(proxyUrl)
+        .then(response => {
+          if (!response.ok) throw new Error('Network response was not ok');
+          return response.text();
+        })
+        .then(xmlText => {
+          const articles = parseRSS(xmlText);
+          
+          if (articles.length === 0) {
+            element.innerHTML = '<div class="rss-error">No articles found</div>';
+            return;
+          }
+          
+          element.innerHTML = articles.map(article => `
+            <div class="rss-item">
+              <a href="${article.link}" target="_blank" rel="noopener">${article.title}</a>
+              ${article.pubDate ? `<span class="rss-date">${formatDate(article.pubDate)}</span>` : ''}
+            </div>
+          `).join('');
+        })
+        .catch(error => {
+          console.error('Error fetching RSS feed:', error);
+          element.innerHTML = '<div class="rss-error">Unable to load feed</div>';
+        });
+    }
+
+    // Initialize feeds on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderFeed('republican');
+      renderFeed('democrat');
+    });
+  </script>
 </body>
 </html>
