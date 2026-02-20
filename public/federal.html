@@ -231,8 +231,8 @@
     };
 
     // Cloudflare Worker API URL
-    // Update this to your deployed worker URL
-    const WORKER_API_URL = '/workers/news-aggregator';
+    // TODO: Replace YOUR-ACCOUNT with your Cloudflare account name after running `wrangler deploy`
+    const WORKER_API_URL = 'https://news-aggregator.YOUR-ACCOUNT.workers.dev';
 
     // Fallback CORS proxy (used if worker fails)
     const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
